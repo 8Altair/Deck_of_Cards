@@ -1,4 +1,5 @@
-from random import  shuffle as s
+from random import shuffle as s
+
 
 class Card:
     suits = ("Hearts", "Diamonds", "Clubs", "Spades")
@@ -25,7 +26,7 @@ class Deck:
                           "Spades": ("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")}
 
     def __init__(self):
-        self.cards = [Card(suit, value) for suit in Deck.possible_instances for value in range(len(Deck.possible_instances[suit]))]
+        self.cards = [Card(suit, value) for suit in Deck.possible_instances for value in Deck.possible_instances[suit]]
 
     def count(self):
         return len(self.cards)
@@ -33,22 +34,35 @@ class Deck:
     def __repr__(self):
         return "Deck of {} cards".format(self.count())
 
-    def _deal(self, number_of_cards):
-        number_of_cards_in_the_deck = 0
-        if self.count() > number_of_cards:
-            number_of_cards_in_the_deck = self.count() - number_of_cards
-        elif self.count() <= 0:
+    def _deal(self, number_of_cards=1):
+        if self.count() == 0:
             raise ValueError("All cards have been dealt")
-        new_deck = self.cards[-number_of_cards_in_the_deck:]
-        self.cards = self.cards[:-number_of_cards_in_the_deck]
-        return new_deck
+
+        if self.count() > number_of_cards:
+            new_deck = self.cards[-number_of_cards:]
+            self.cards = self.cards[:-number_of_cards]
+            return new_deck
+        elif self.count() < number_of_cards:
+            new_deck = self.cards
+            self.cards = []
+            return new_deck
 
     def shuffle(self):
         if self.count() == 52:
             s(self.cards)
             return self.cards
         else:
-            raise ValueError("It is only possible to shuffle full deck.")
+            raise ValueError("Only full decks can be shuffled.")
 
     def deal_card(self):
+        return self._deal()[0]
 
+    def deal_hand(self, number_of_cards):
+        return self._deal(number_of_cards)
+
+
+karta = Card("Hearts", "10")
+print(karta)
+dek = Deck()
+dek.deal_hand(65)
+print(dek.deal_hand(52))

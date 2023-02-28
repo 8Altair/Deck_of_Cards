@@ -11,8 +11,7 @@ class CardTestCase(u.TestCase):  # This class is a TestCase subclass from the un
 
     # This method tests whether a ValueError is raised when an invalid suit parameter is passed to the Card class constructor
     def test_create_invalid_suit(self):
-        with self.assertRaises(
-                ValueError):  # Use the assertRaises context manager to check if a ValueError is constructor
+        with self.assertRaises(ValueError):  # Use the assertRaises context manager to check if a ValueError is constructor
             Card("Junk", "A")
 
     # This method tests whether a ValueError is raised when an invalid value parameter is passed to the Card class constructor

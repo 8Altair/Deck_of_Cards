@@ -34,44 +34,52 @@ class Deck:
 
     def __init__(self):
         # When a new deck is created, create a list of cards by iterating over each possible suit and value
-        self.cards = (Card(suit, value) for suit in Deck.possible_instances for value in Deck.possible_instances[suit])
+        self.cards = [Card(suit, value) for suit in Deck.possible_instances for value in Deck.possible_instances[suit]]
 
-    def count(self):
+    def count(self):  # Returns the number of cards in the deck
         return len(self.cards)
 
-    def __repr__(self):
+    def __repr__(self):  # Returns a string representation of the deck
         return "Deck of {} cards".format(self.count())
 
-    def _deal(self, number_of_cards=1):
-        if self.count() == 0:
+    def _deal(self, number_of_cards=1):  # Deals cards from the deck
+        if self.count() == 0:  # Check if there are any cards left in the deck
             raise ValueError("All cards have been dealt")
 
-        if self.count() > number_of_cards:
-            new_deck = self.cards[-number_of_cards:]
-            self.cards = self.cards[:-number_of_cards]
-            return new_deck
-        elif self.count() < number_of_cards:
-            new_deck = self.cards
+        new_deck = []
+        if self.count() > number_of_cards:  # If there are enough cards left in the deck to deal, return the top n cards
+            new_deck = self.cards[-number_of_cards:]    # Take the "number_of_cards" from the top
+            self.cards = self.cards[:-number_of_cards]  # Leave the rest of the cards
+        elif self.count() <= number_of_cards:  # If there are not enough cards left in the deck to deal, return all remaining cards
+            new_deck = self.cards   # Deal everything that is left in the deck
             self.cards = []
-            return new_deck
+        return new_deck
 
-    def shuffle(self):
-        if self.count() == 52:
-            s(self.cards)
+    def shuffle(self):  # Shuffles the deck of cards
+        if self.count() == 52:  # Checking if the deck is complete
+            s(self.cards)   # Shuffle
             return self.cards
         else:
             raise ValueError("Only full decks can be shuffled.")
 
-    def deal_card(self):
+    def deal_card(self):  # Deal a single card from the top of the deck and return the card that was dealt
         return self._deal()[0]
 
-    def deal_hand(self, number_of_cards):
+    def deal_hand(self, number_of_cards):   # Deals a hand with the specified number of cards
         return self._deal(number_of_cards)
 
 
 if __name__ == "__main__":
-    karta = Card("Hearts", "10")
-    print(karta)
-    dek = Deck()
-    dek.deal_hand(65)
-    print(dek.deal_hand(52))
+    first_card = Card("Hearts", "10")
+    print(first_card)
+
+    first_deck = Deck()
+    first_deck.shuffle()
+
+    print("Deck:", first_deck.cards)
+    print("Deck size:", len(first_deck.cards))
+    print("Hand size:", len(first_deck.deal_hand(50)))
+
+    print("Deck:", first_deck.cards)
+    print("Deck size:", len(first_deck.cards))
+    print(first_deck.deal_hand(65))

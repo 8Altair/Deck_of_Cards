@@ -1,19 +1,18 @@
-[Deck of Cards](#Deck_of_Cards)
+# Table of Contents
 
-[Card class](##Card class)
-[Constructor](###Constructor)
-[Representation](###Representation)
-
-[Deck class](##Deck class)
-[Constructor](###Constructor)
-[Representation](###Representation)
-[Count](###Count)
-[Shuffle](###Shuffle)
-[Deal](###Deal)
-
-[Unit test](##Unit test)
-[Card test](###Card test)
-[Deck test](###Deck test)
+- [Deck_of_Cards](#deck_of_cards)
+  - [Card class](#card-class)
+    - [Constructor](#constructor)
+    - [Representation](#representation)
+  - [Deck class](#deck-class)
+    - [Constructor](#constructor-1)
+    - [Representation](#representation-1)
+    - [Count](#count)
+    - [Shuffle](#shuffle)
+    - [Deal](#deal)
+  - [Unit test](#unit-test)
+    - [Card test](#card-test)
+    - [Deck test](#deck-test)
 
 
 

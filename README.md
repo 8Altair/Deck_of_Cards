@@ -1,6 +1,6 @@
-[Deck_of_Cards](#Deck_of_Cards)
+[Deck of Cards](#Deck_of_Cards)
 
-[Card class](###Card class)
+[Card class](##Card class)
 [Constructor](###Constructor)
 [Representation](###Representation)
 
